@@ -28,4 +28,21 @@ public class GewinnModel {
     public void berechneComputerZahl() {
         computerZahl = (int) (Math.random() * 9) + 1;
     }
+    public void berechneRunde(int spielerZahl) {
+        if (spielerZahl < 1 || spielerZahl > 9) {
+            return;
+        }
+
+        this.spielerZahl = spielerZahl;
+
+        if (spielerZahl == computerZahl) {
+            rundenErgebnis = 20;
+        } else if (Math.abs(spielerZahl - computerZahl) == 1) {
+            rundenErgebnis = 5;
+        } else {
+            rundenErgebnis = -10;
+        }
+
+        gesamtPunkte += rundenErgebnis;
+    }
 }
