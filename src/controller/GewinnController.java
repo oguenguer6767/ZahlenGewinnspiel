@@ -42,6 +42,8 @@ public class GewinnController {
 
             view.getGesamtPunkteLabel().setText(
                     "Gesamtpunkte: " + model.getGesamtPunkte());
+            view.getSpielerEingabe().setEnabled(false);
+            view.getNochEinmalButton().setEnabled(true);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(view,
@@ -54,5 +56,7 @@ public class GewinnController {
         view.getComputerAnzeige().setText("");
         view.getRundenErgebnisLabel().setText("Rundenergebnis: 0");
         view.getSpielerEingabe().requestFocus();
+        view.getSpielerEingabe().setEnabled(true);
+        view.getNochEinmalButton().setEnabled(false);
     }
 }

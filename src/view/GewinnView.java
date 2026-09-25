@@ -45,6 +45,7 @@ public class GewinnView extends JFrame {
         eingabePanel.add(computerAnzeige);
 
         nochEinmalButton = new JButton("Noch einmal!");
+        nochEinmalButton.setEnabled(false);
 
         add(statusPanel, BorderLayout.NORTH);
         add(eingabePanel, BorderLayout.CENTER);
