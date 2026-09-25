@@ -4,6 +4,7 @@ import model.GewinnModel;
 import view.GewinnView;
 
 import javax.swing.*;
+import java.awt.Color;
 
 public class GewinnController {
 
@@ -20,14 +21,13 @@ public class GewinnController {
     }
 
     private void spieleRunde() {
-        String eingabe = view.getSpielerEingabe().getText();
-
         try {
-            int spielerZahl = Integer.parseInt(eingabe);
+            int spielerZahl = Integer.parseInt(
+                    view.getSpielerEingabe().getText());
 
             if (spielerZahl < 1 || spielerZahl > 9) {
                 JOptionPane.showMessageDialog(view,
-                        "Bitte gib eine Zahl von 1 bis 9 ein.");
+                        "Bitte gib eine Zahl zwischen 1 und 9 ein!");
                 return;
             }
 
@@ -42,12 +42,27 @@ public class GewinnController {
 
             view.getGesamtPunkteLabel().setText(
                     "Gesamtpunkte: " + model.getGesamtPunkte());
+
+            if (model.hatGewonnen() || model.getRundenErgebnis() > 0) {
+                view.getRundenErgebnisLabel().setBackground(Color.GREEN);
+                view.getGesamtPunkteLabel().setBackground(Color.GREEN);
+
+            } else if (model.hatVerloren()
+                    || model.getRundenErgebnis() < 0) {
+                view.getRundenErgebnisLabel().setBackground(Color.RED);
+                view.getGesamtPunkteLabel().setBackground(Color.RED);
+
+            } else {
+                view.getRundenErgebnisLabel().setBackground(Color.WHITE);
+                view.getGesamtPunkteLabel().setBackground(Color.WHITE);
+            }
+
             view.getSpielerEingabe().setEnabled(false);
             view.getNochEinmalButton().setEnabled(true);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(view,
-                    "Bitte gib eine gültige Zahl ein.");
+                    "Bitte gib eine gültige Zahl ein!");
         }
     }
 
